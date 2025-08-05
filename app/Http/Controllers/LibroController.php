@@ -47,16 +47,16 @@ class LibroController extends Controller
 
         $validated = $request->validate([
             'titulo' => 'required|string|max:255',
-            'autor' => 'nullable|string',
-            'idioma' => 'nullable|string',
+            'autor' => 'required|string|max:255',
+            'idioma' => 'required|string|max:100',
             'formato_id' => 'required|exists:formatos,id',
             'estado_id' => 'required|exists:estados,id',
-            'generos' => 'required|array',
+            'generos' => 'required|array|min:1',
             'generos.*' => 'exists:generos,id',
-            'numero_paginas' => 'nullable|string|max:5',
-            'pagina_actual' => 'nullable|string|max:5',
-            'valoracion' => 'nullable|string',
-            'comentario' => 'nullable|string|max:5000', // o el límite que quieras
+            'numero_paginas' => 'required|integer|min:1|max:99999',
+            'pagina_actual' => 'required|integer|min:0|max:'.$request->numero_paginas,
+            'valoracion' => 'required|integer|min:1|max:5',
+            'comentario' => 'nullable|string',
             'fecha_lectura' => 'nullable|date',
         ]);
 
