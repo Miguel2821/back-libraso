@@ -8,12 +8,7 @@ use App\Http\Controllers\CatalogoController;
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-Route::get('/run-migrations', function () {
-    \Artisan::call('migrate', ['--force' => true]);
-    \Artisan::call('db:seed', ['--class' => 'CatalogosSeeder', '--force' => true]);
 
-    return response()->json(['status' => 'Migraciones y seeders ejecutados']);
-});
 
 
 
