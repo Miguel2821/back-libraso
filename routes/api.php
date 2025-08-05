@@ -10,6 +10,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
 
+
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/perfil', [AuthController::class, 'perfil']);
     Route::post('/libros', [LibroController::class, 'store']);

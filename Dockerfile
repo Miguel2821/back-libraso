@@ -25,6 +25,10 @@ RUN php artisan config:cache && \
     php artisan route:cache && \
     php artisan view:cache
 
+# Ejecutar migraciones y seeders en cada build (seguro y sin duplicar)
+RUN php artisan migrate --force && \
+    php artisan db:seed --class=CatalogosSeeder --force
+
 # Exponer el puerto de Laravel
 EXPOSE 10000
 
